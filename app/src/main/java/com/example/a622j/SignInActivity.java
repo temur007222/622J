@@ -18,7 +18,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign);
+        setContentView(R.layout.sign);
 
         EditText email1 = findViewById(R.id.email);
         EditText name = findViewById(R.id.name);

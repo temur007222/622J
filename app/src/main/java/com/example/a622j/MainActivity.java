@@ -28,37 +28,34 @@ public class MainActivity extends AppCompatActivity {
         Button save = findViewById(R.id.LogIn);
         TextView textView = findViewById(R.id.signIn);
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String emailValue = email1.getText().toString();
-                String passwordValue = pas.getText().toString();
+        if (email1.length() > 1 && pas.length() > 1) {
 
-                String registeredEmail = sharedPreferences.getString("emailValue", "");
-                String registeredPassword = sharedPreferences.getString("pasValue", "");
+            save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String emailValue = email1.getText().toString();
+                    String passwordValue = pas.getText().toString();
 
-                if (emailValue.equals(registeredEmail) && passwordValue.equals(registeredPassword)){
-                    Intent intent = new Intent(MainActivity.this, LastActivity.class );
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    String registeredEmail = sharedPreferences.getString("emailValue", "");
+                    String registeredPassword = sharedPreferences.getString("pasValue", "");
+
+                    if (emailValue.equals(registeredEmail) && passwordValue.equals(registeredPassword)) {
+                        Intent intent = new Intent(MainActivity.this, LastActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
                 }
-
-            }
-        });
+            });
+        }
+        else{
+            Toast.makeText(MainActivity.this, "Please, Sign in", Toast.LENGTH_SHORT).show();
+        }
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SignInActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LastActivity.class);
                 startActivity(intent);
             }
         });
