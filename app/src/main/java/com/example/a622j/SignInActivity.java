@@ -38,21 +38,24 @@ public class SignInActivity extends AppCompatActivity {
                 String nameValue = name.getText().toString();
                 String cpasValue = cpas.getText().toString();
 
-                if (emailValue.length() > 1){
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                if (emailValue.length() > 1 && passwordValue.length() > 1 && nameValue.length() > 1 && cpasValue.length() > 1){
+                    if (passwordValue.equals(cpasValue)) {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                    editor.putString("emailValue",emailValue );
-                    editor.putString("passwordValue", passwordValue);
-                    editor.putString("nameValue", nameValue);
-                    editor.putString("cpasValue", cpasValue);
-                    editor.apply();
+                        editor.putString("emailValue", emailValue);
+                        editor.putString("passwordValue", passwordValue);
+                        editor.putString("nameValue", nameValue);
+                        editor.putString("cpasValue", cpasValue);
+                        editor.apply();
 
-                    Toast.makeText(SignInActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
-                    finish();
+                        Toast.makeText(SignInActivity.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }else{
+                        Toast.makeText(SignInActivity.this, "Invalid confirm password", Toast.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Toast.makeText(SignInActivity.this, "Form the application, please", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignInActivity.this, "Form the application fully, please", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 

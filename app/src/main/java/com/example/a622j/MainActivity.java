@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Button save = findViewById(R.id.LogIn);
         TextView textView = findViewById(R.id.signIn);
 
-        if (email1.length() > 1 && pas.length() > 1) {
+        sharedPreferences = getSharedPreferences("userInfo", 0);
 
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -37,20 +37,20 @@ public class MainActivity extends AppCompatActivity {
                     String passwordValue = pas.getText().toString();
 
                     String registeredEmail = sharedPreferences.getString("emailValue", "");
-                    String registeredPassword = sharedPreferences.getString("pasValue", "");
+                    String registeredPassword = sharedPreferences.getString("passwordValue", "");
 
-                    if (emailValue.equals(registeredEmail) && passwordValue.equals(registeredPassword)) {
-                        Intent intent = new Intent(MainActivity.this, LastActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    if (email1.length() > 1 && pas.length() > 1) {
+                        if (emailValue.equals(registeredEmail) && passwordValue.equals(registeredPassword)) {
+                            Intent intent = new Intent(MainActivity.this, LastActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                        }
+                    }else {
+                        Toast.makeText(MainActivity.this, "Please, Sign in", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-        }
-        else{
-            Toast.makeText(MainActivity.this, "Please, Sign in", Toast.LENGTH_SHORT).show();
-        }
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
